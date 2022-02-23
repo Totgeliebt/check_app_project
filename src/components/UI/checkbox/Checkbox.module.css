@@ -1,0 +1,33 @@
+input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox__label1,
+.checkbox__label2 {
+  font-size: 16px;
+  line-height: 19px;
+  color: #404040;
+}
+
+.checkbox__label1 {
+  margin-left: 40px;
+}
+
+.checkbox__label1:before {
+  content: " ";
+  width: 24px;
+  height: 24px;
+  top: -3px;
+  left: 0;
+  display: inline-block;
+  position: absolute;
+  border-radius: 3px;
+  background: linear-gradient(
+    270deg,
+    rgba(85, 227, 205, 0.05) 0%,
+    rgba(49, 159, 185, 0.05) 100%
+  );
+  border: 1px solid rgba(49, 159, 185, 1);
+  /*border-image: linear-gradient(270deg, rgba(85, 227, 205, 1) 0%, rgba(49, 159, 185, 1) 100%);*/
+  /*border-image-slice: 1;*/
+}

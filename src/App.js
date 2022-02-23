@@ -1,14 +1,13 @@
-import './App.css';
+import "./App.css";
 import Header from "./components/UI/header/Header";
-import EmptyCard from "./components/UI/empty_card/EmptyCard";
+import EmptyCard from "./components/UI/empty-card/EmptyCard";
+import AddAppPopup from "./components/UI/modals/add-app/AddAppPopup";
+import MainPage from "./pages/MainPage/MainPage";
 
-function App() {
-    return (
-        <>
-            <Header/>
-            <EmptyCard/>
-        </>
-    );
-}
-
-export default App;
+export const App = () => {
+  return (
+    <>
+      <MainPage />
+    </>
+  );
+};
