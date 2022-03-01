@@ -4,26 +4,26 @@ import crossIcon from "../../../../assets/icons/cross-icon.svg";
 import PopupTextarea from "../../textarea";
 import Button from "../../button";
 
-const ChangeDescription = ({ active, setActive, children }) => {
+const ChangeDescription = ({ editActive, setEditActive, children }) => {
   return (
     <div
-      className={active ? `${classes.modal} ${classes.active}` : classes.modal}
-      onClick={() => setActive(false)}
+      className={editActive ? `${classes.modal} ${classes.active}` : classes.modal}
+      onClick={() => setEditActive(false)}
     >
       <div
         className={
-          active
+          editActive
             ? `${classes.modal__content} ${classes.active}`
             : classes.modal__content
         }
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className={classes.modal__content_title}>Добавить приложение</h2>
+        <h2 className={classes.modal__content_title}>Изменить описание</h2>
         <img
           className={classes.modal__content_cross}
           src={crossIcon}
           alt="cross"
-          onClick={() => setActive(false)}
+          onClick={() => setEditActive(false)}
         />
         <PopupTextarea textareaLabel={"Описание"} />
         <Button text={"Сохранить"} />

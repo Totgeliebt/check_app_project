@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./Button.module.css";
 
-const Button = ({ text, type = "default" }) => {
+const Button = ({ onClick, text, type = "default" }) => {
   if (type === "mini") {
-    return <button className={classes.button_mini}>{text}</button>
+    return <button onClick={onClick} className={classes.button_mini}>{text}</button>
 
   }
   if (type === "default") {

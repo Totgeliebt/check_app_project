@@ -93,6 +93,7 @@
   position: absolute;
   top: 62px;
   left: 0;
+  z-index: 100;
 }
 .header__sortApp_chosen {
   font-weight: 600;

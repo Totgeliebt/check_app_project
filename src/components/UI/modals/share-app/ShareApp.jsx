@@ -4,15 +4,15 @@ import crossIcon from "../../../../assets/icons/cross-icon.svg";
 import Button from "../../button";
 import PopupInput from "../../input";
 
-const ShareApp = ({ active, setActive, children }) => {
+const ShareApp = ({ shareActive, setShareActive, children }) => {
   return (
     <div
-      className={active ? `${classes.modal} ${classes.active}` : classes.modal}
-      onClick={() => setActive(false)}
+      className={shareActive ? `${classes.modal} ${classes.active}` : classes.modal}
+      onClick={() => setShareActive(false)}
     >
       <div
         className={
-          active
+          shareActive
             ? `${classes.modal__content} ${classes.active}`
             : classes.modal__content
         }
@@ -23,7 +23,7 @@ const ShareApp = ({ active, setActive, children }) => {
           className={classes.modal__content_cross}
           src={crossIcon}
           alt="cross"
-          onClick={() => setActive(false)}
+          onClick={() => setShareActive(false)}
         />
         <PopupInput label={"Telegram"}/>
         <Button text={"Опубликовать"} />

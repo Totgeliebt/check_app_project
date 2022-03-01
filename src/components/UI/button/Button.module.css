@@ -8,6 +8,7 @@
   font-size: 18px;
   line-height: 22px;
   margin-top: 40px;
+  cursor: pointer;
 }
 .button_mini {
   width: 180px;
@@ -22,9 +23,10 @@
   color: #404040;
   opacity: 0.5;
   margin: 5px;
+  cursor: pointer;
 }
 
-.button_mini.active {
+.button_mini:hover {
   background: linear-gradient(272.12deg, #55e3cd 0%, #319fb9 99.36%);
   color: #FFFFFF;
 }

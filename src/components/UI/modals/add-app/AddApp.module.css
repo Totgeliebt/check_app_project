@@ -24,6 +24,7 @@
   transform: scale(0.5);
   transition: 0.4s all ease;
   padding: 70px 40px;
+  box-shadow: -4px -4px 20px #FFFFFF, 4px 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .modal__content.active {

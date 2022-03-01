@@ -1,16 +1,23 @@
-import React from 'react';
-import classes from './PopupInput.module.css'
+import React, { useState } from "react";
+import classes from "./PopupInput.module.css";
 // BaseInput
 // BaseButton
 // type={'popup'}
 const PopupInput = ({ label, type = "default" }) => {
+  const [inputValue, setInputValue] = useState("");
   if (type === "popup") {
     return (
       <div>
         <label className={classes.popupInput__label} htmlFor="name">
           {label}
         </label>
-        <input name="name" id="name" className={classes.popupInput}></input>
+        <input
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          name="name"
+          id="name"
+          className={classes.popupInput}
+        />
       </div>
     );
   }
@@ -21,7 +28,13 @@ const PopupInput = ({ label, type = "default" }) => {
         <label className={classes.popupInput__label} htmlFor="name">
           {label}
         </label>
-        <input name="name" id="name" className={classes.popupInput}></input>
+        <input
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          name="name"
+          id="name"
+          className={classes.popupInput}
+        />
       </div>
     );
   }

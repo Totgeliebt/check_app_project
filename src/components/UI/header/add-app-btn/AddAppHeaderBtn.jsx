@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "../Header.module.css";
 import plus from "../../../../assets/icons/plus.svg";
 
-const AddApp = ({setActive, onClick}) => {
+const AddAppHeaderBtn = ({setActive, onClick}) => {
   return (
     <div onClick={() => setActive(true)} className={classes.header__addApp}>
       <div className={classes.header__addApp_btn}>
@@ -17,4 +17,4 @@ const AddApp = ({setActive, onClick}) => {
   );
 };
 
-export default AddApp;
+export default AddAppHeaderBtn;
