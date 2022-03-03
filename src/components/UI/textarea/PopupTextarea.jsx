@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./PopupTextarea.module.css";
 
-const PopupTextarea = ({ value, textareaLabel }) => {
+const PopupTextarea = ({ value,onChange, textareaLabel }) => {
   const [textareaValue, setTextareaValue] = useState("");
   return (
     <div>
@@ -9,8 +9,8 @@ const PopupTextarea = ({ value, textareaLabel }) => {
         {textareaLabel}
       </label>
       <textarea
-        value={textareaValue}
-        onChange={(e) => setTextareaValue(e.target.value)}
+        value={value}
+        onChange={onChange}
         className={classes.textarea}
         id="description"
         cols="30"

@@ -3,8 +3,8 @@ import classes from "./PopupInput.module.css";
 // BaseInput
 // BaseButton
 // type={'popup'}
-const PopupInput = ({ label, type = "default" }) => {
-  const [inputValue, setInputValue] = useState("");
+const PopupInput = ({ value, onChange, label, type = "default" }) => {
+
   if (type === "popup") {
     return (
       <div>
@@ -12,8 +12,8 @@ const PopupInput = ({ label, type = "default" }) => {
           {label}
         </label>
         <input
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={value}
+          onChange={onChange}
           name="name"
           id="name"
           className={classes.popupInput}
@@ -29,8 +29,8 @@ const PopupInput = ({ label, type = "default" }) => {
           {label}
         </label>
         <input
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={value}
+          onChange={onChange}
           name="name"
           id="name"
           className={classes.popupInput}
