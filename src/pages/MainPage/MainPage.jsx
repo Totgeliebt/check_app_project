@@ -5,11 +5,10 @@ import AddApp from "../../components/UI/modals/add-app";
 import ChangeDescription from "../../components/UI/modals/change-description";
 import ShareApp from "../../components/UI/modals/share-app";
 import DeleteApp from "../../components/UI/modals/delete-app";
-import axios from "axios";
-import AppItem from "../../components/UI/app-item/AppItem";
 import AppsList from "../../components/UI/apps-list/AppsList";
+import AppItem from "../../components/UI/app-item/AppItem";
 
-const MainPage = ({ onClick, props, appName,appDescription,appBundle }) => {
+const MainPage = ({ onClick}) => {
   const [apps, setApps] = useState([]);
   const [modalActive, setModalActive] = useState(false);
   const [modalEditActive, setModalEditActive] = useState(false);
@@ -24,7 +23,7 @@ const MainPage = ({ onClick, props, appName,appDescription,appBundle }) => {
         onClick={onClick}
       />
       <div className={classes.mainPage__wrapper}>
-        <AppsList props={props} apps={apps} setApps={setApps}/>
+        <AppsList apps={apps} setApps={setApps}/>
         {/*<AppItem*/}
         {/*  editActive={modalEditActive}*/}
         {/*  setEditActive={setModalEditActive}*/}
@@ -33,7 +32,6 @@ const MainPage = ({ onClick, props, appName,appDescription,appBundle }) => {
         {/*  onClick={onClick}*/}
         {/*/>*/}
         <AddApp
-          // appName={appName} appDescription={appDescription} appBundle={appBundle}
           apps={apps}
           setApps={setApps}
           active={modalActive}

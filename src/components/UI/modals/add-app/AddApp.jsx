@@ -7,9 +7,15 @@ import Button from "../../button";
 import crossIcon from "../../../../assets/icons/cross-icon.svg";
 import axios from "axios";
 
-const AddApp = ({ value, active, setActive, setApps, apps }) => {
-  const [appData, setAppData] = useState([])
-  async function fetchApps(appName, appBundle, appDescription) {
+const AddApp = ({active, setActive, setApps, apps }) => {
+  const [appId, setAppId] = useState('')
+  const [appName, setAppName] = useState("");
+  const [appBundle, setAppBundle] = useState('')
+  const [appDescription, setAppDescription] = useState('')
+  const [appPending, setAppPending] = useState(true);
+
+
+  async function fetchApp(appName, appDescription, appBundle, appPending, appId, setAppId) {
     // async function fetchApps(
     //   appName,
     //   appDescription,
@@ -33,28 +39,34 @@ const AddApp = ({ value, active, setActive, setApps, apps }) => {
 
     const appData = {
       name: `${appName}`,
-      description: `${appBundle}`,
-      bundle: `${appDescription}`,
+      bundle:  `${appBundle}` ,
+      description: `${appDescription}`,
+      is_pending: `${appPending}`
     };
+
     const response = await axios
       .post("https://app-state.herokuapp.com/v1/apps", appData, {
         "Content-Type": "application/json",
         Accept: "application/json",
       })
       .then(function (response) {
-        console.log(response);
+        setAppId(response.data);
       })
       .catch(function (error) {
         console.log(error);
       });
-  // setAppData(appData)
-    // setApps(response.data)
   }
-
+  async function fetchAllApps(apps, setApps) {
+    const response = await axios
+      .get("https://app-state.herokuapp.com/v1/apps" + appId)
+    setApps(response.data)
+  }
+  console.log(apps)
   const handleAddApp = (e) => {
     e.preventDefault();
-    fetchApps();
+    // fetchApp(appName, appDescription, appBundle, appPending,appId, setAppId);
     setActive(false);
+    fetchAllApps(apps, setApps)
   };
 
   return (
@@ -82,13 +94,13 @@ const AddApp = ({ value, active, setActive, setApps, apps }) => {
           method="POST"
           action="https://app-state.herokuapp.com/v1/apps"
         >
-          <PopupInput appName={value} label={"Название"} />
-          <PopupTextarea appDescription={value} textareaLabel={"Описание"} />
-          <PopupInput
-            appBundle={value}
+          <PopupInput value={appName} onChange={(e) => setAppName(e.target.value)} label={"Название"} />
+          <PopupTextarea value={appDescription} onChange={(e) => setAppDescription(e.target.value)} textareaLabel={"Описание"} />
+          <PopupInput value={appBundle} onChange={(e) => setAppBundle(e.target.value)}
+
             label={"Текстовое поле формата com.app.bundle"}
           />
-          <Checkbox />
+          <Checkbox checked={appPending} onChange={() => setAppPending(!appPending)}/>
           <Button text={"Добавить"} />
         </form>
       </div>

@@ -1,10 +1,13 @@
 import React from "react";
 import classes from "./Checkbox.module.css";
 
-const Checkbox = () => {
+const Checkbox = ({checked, onChange}) => {
   return (
     <div style={{ position: "relative" }}>
+
       <input
+        checked={checked}
+        onChange={onChange}
         className={classes.checkbox__box}
         type="checkbox"
         id="pending"

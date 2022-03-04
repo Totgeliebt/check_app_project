@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./AppItem.module.css";
 import copylinkIcon from "../../../assets/icons/copylink-icon.svg";
 import deleteIcon from "../../../assets/icons/delete-icon.svg";
 import editIcon from "../../../assets/icons/edit-icon.svg";
 import shareIcon from "../../../assets/icons/share-icon.svg";
-import AddAppHeaderBtn from "../header/add-app-btn/AddAppHeaderBtn";
 import ChangeDescription from "../modals/change-description";
 
 const AppItem = ({
@@ -13,30 +12,39 @@ const AppItem = ({
   setEditActive,
   setDeleteActive,
   setShareActive,
-
+  name,
+  bundle,
+  description,
+  icon,
+  version,
+  update,
+  rate,
+  rateCounting,
+  installations,
 }) => {
+
   return (
     <div className={classes.card}>
       <div className={classes.card__title_wrapper}>
-        <img className={classes.card__icon} alt="app image" />
-        <p className={classes.card__title}>Sketchbook</p>
-        <p className={classes.card__bundle}>com.app.bundle</p>
-        <p className={classes.card__rating}>21,367,566</p>
+        <img className={classes.card__icon} src={icon} alt="app icon" />
+        <p className={classes.card__title}>{name}</p>
+        <p className={classes.card__bundle}>{bundle}</p>
+        <p className={classes.card__rate_counting}>
+          <span className={classes.card__rate}>{rate}</span>
+          {rateCounting}
+        </p>
       </div>
-      <div className={classes.card__description}>
-        Sketchbook — это отмеченное наградами приложение для создания эскизов,
-        картин и рисунков для всех...
-      </div>
+      <div className={classes.card__description}>{description}</div>
       <div>
         <ul className={classes.card__details}>
           <li className={classes.card__details_updated}>
-            Обновлено <p>14.02.2022</p>
+            Обновлено <p>{update}</p>
           </li>
           <li className={classes.card__details_version}>
-            Версия <p>5.2.5</p>
+            Версия <p>{version}</p>
           </li>
           <li className={classes.card__details_installed}>
-            Установки <p>1 000 000 +</p>
+            Установки <p>{installations}</p>
           </li>
         </ul>
       </div>

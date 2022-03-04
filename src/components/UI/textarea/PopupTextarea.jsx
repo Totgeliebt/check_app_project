@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./PopupTextarea.module.css";
 
 const PopupTextarea = ({ value,onChange, textareaLabel }) => {
-  const [textareaValue, setTextareaValue] = useState("");
+
   return (
     <div>
       <label className={classes.textarea__label} htmlFor="Description">
