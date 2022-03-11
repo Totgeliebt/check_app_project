@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./PopupTextarea.module.css";
 
-const PopupTextarea = ({ value,onChange, textareaLabel }) => {
+const PopupTextarea = ({ required, value,onChange, textareaLabel }) => {
 
   return (
     <div>
@@ -9,6 +9,7 @@ const PopupTextarea = ({ value,onChange, textareaLabel }) => {
         {textareaLabel}
       </label>
       <textarea
+        required={required}
         value={value}
         onChange={onChange}
         className={classes.textarea}

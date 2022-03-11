@@ -3,7 +3,7 @@ import classes from "./PopupInput.module.css";
 // BaseInput
 // BaseButton
 // type={'popup'}
-const PopupInput = ({ value, onChange, label, type = "default" }) => {
+const PopupInput = ({ required, value, onChange, label, type = "default" }) => {
 
   if (type === "popup") {
     return (
@@ -12,6 +12,7 @@ const PopupInput = ({ value, onChange, label, type = "default" }) => {
           {label}
         </label>
         <input
+          required={required}
           value={value}
           onChange={onChange}
           name="name"
@@ -29,6 +30,7 @@ const PopupInput = ({ value, onChange, label, type = "default" }) => {
           {label}
         </label>
         <input
+          required={required}
           value={value}
           onChange={onChange}
           name="name"

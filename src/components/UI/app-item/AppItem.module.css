@@ -69,7 +69,7 @@
   position: relative;
 }
 .card__details_updated {
-  width: 90px;
+  width: 80px;
 }
 .card__details_updated:after{
   content: '';
@@ -89,6 +89,6 @@ display: inline-block;
   display: inline-block;
   position: absolute;
   top: 0;
-  right:110px;
+  right: 100px;
 }
 

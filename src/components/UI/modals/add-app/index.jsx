@@ -1,3 +1,3 @@
-import AddAppPopup from "./AddApp";
+import AddApp from "./AddApp";
 
-export default AddAppPopup;
+export default AddApp;

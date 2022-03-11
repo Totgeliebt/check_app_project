@@ -1,18 +1,25 @@
 import React from "react";
 import AppItem from "../app-item/AppItem";
-import classes from "./AppsList.module.css";
 import EmptyCard from "../empty-card";
 
-const AppsList = ({ apps, setApps }) => {
+
+const AppsList = ({
+  apps,
+  setApps
+}) => {
   if (!apps.length) {
     return <EmptyCard />;
   }
-  console.log(apps);
+
   return (
+    <>
     <div style={{ display: "flex", flexWrap: "wrap" }}>
       {apps.map((app, id) => {
         return (
           <AppItem
+            apps={apps}
+            setApps={setApps}
+            key={app.id}
             app={app}
             id={app.id}
             name={app.name}
@@ -28,6 +35,8 @@ const AppsList = ({ apps, setApps }) => {
         );
       })}
     </div>
+
+    </>
   );
 };
 

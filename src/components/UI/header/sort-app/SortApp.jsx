@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import classes from "../Header.module.css";
 import dropdown from "../../../../assets/icons/dropdown.svg";
 
 const SortApp = () => {
-
   const [isDropdownSortShown, setIsDropdownSortShown] = useState(false);
   return (
     <div
@@ -18,12 +17,8 @@ const SortApp = () => {
       />
       {isDropdownSortShown ? (
         <div className={classes.header__sortApp_dropdown}>
-          <div className={classes.header__sortApp_title}>
-            Все приложения
-          </div>
-          <div className={classes.header__sortApp_title}>
-            Удаленные приложения
-          </div>
+          <div className={classes.header__sortApp_title}>Все приложения</div>
+          <div className={classes.header__sortApp_title}>Удаленные приложения</div>
           <div className={classes.header__sortApp_title}>Пендинг</div>
         </div>
       ) : null}

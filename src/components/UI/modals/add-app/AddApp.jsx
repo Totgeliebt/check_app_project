@@ -1,73 +1,79 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import PopupInput from "../../input/PopupInput";
 import classes from "./AddApp.module.css";
 import PopupTextarea from "../../textarea/PopupTextarea";
 import Checkbox from "../../checkbox";
 import Button from "../../button";
 import crossIcon from "../../../../assets/icons/cross-icon.svg";
-import axios from "axios";
+import PostService from "../../../../api/PostService";
 
-const AddApp = ({active, setActive, setApps, apps }) => {
-  const [appId, setAppId] = useState('')
+const AddApp = ({ active, setActive, setApps, apps, setLoading}) => {
+  const [appId, setAppId] = useState("");
   const [appName, setAppName] = useState("");
-  const [appBundle, setAppBundle] = useState('')
-  const [appDescription, setAppDescription] = useState('')
-  const [appPending, setAppPending] = useState(true);
+  const [appBundle, setAppBundle] = useState("");
+  const [appDescription, setAppDescription] = useState("");
+  const [appPending, setAppPending] = useState(false);
+  // const { fetchApp } = AddAppContainer;
 
+  //using custom hook - which is not working
+  // const [fetchAllApps, isAppsLoading, appsError] = useFetching(async (apps, setApps) => {
+  //   const response = await PostService.getAll();
+  //   setApps(response.data);
+  // })
+  const fetchApp = async (
+    appName,
+    appDescription,
+    appBundle,
+    appPending,
+    appId,
+    setAppId,
+    setApps,
 
-  async function fetchApp(appName, appDescription, appBundle, appPending, appId, setAppId) {
-    // async function fetchApps(
-    //   appName,
-    //   appDescription,
-    //   appBundle,
-    //   url = "https://app-state.herokuapp.com/v1/apps",
-    //   data = {
-    //     appName: `${appName}`,
-    //     appDescription: `${appDescription}`,
-    //     appBundle: `${appBundle}`,
-    //   }
-    // ) {
-    //   const response = await fetch(url, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-    //   return response.json();}
-
+  ) => {
     const appData = {
       name: `${appName}`,
-      bundle:  `${appBundle}` ,
+      bundle: `${appBundle}`,
       description: `${appDescription}`,
-      is_pending: `${appPending}`
+      is_pending: `${appPending}`,
     };
 
-    const response = await axios
-      .post("https://app-state.herokuapp.com/v1/apps", appData, {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      })
+    const response = await PostService.postAppData(appData)
       .then(function (response) {
-        setAppId(response.data);
+        setAppId(response.data.id);
+        //  console.log(response.data.id)
+        console.log(appId)
+        fetchAppById(response.data.id);
+
       })
       .catch(function (error) {
         console.log(error);
       });
   }
-  async function fetchAllApps(apps, setApps) {
-    const response = await axios
-      .get("https://app-state.herokuapp.com/v1/apps" + appId)
-    setApps(response.data)
+
+  const fetchAppById = async (appId) => {
+    const response = await PostService.getAppById(appId);
+    console.log(response.data)
+    return response
   }
-  console.log(apps)
+
   const handleAddApp = (e) => {
     e.preventDefault();
-    // fetchApp(appName, appDescription, appBundle, appPending,appId, setAppId);
+    fetchApp(appName, appDescription, appBundle, appPending, appId, setAppId);
     setActive(false);
-    fetchAllApps(apps, setApps)
+    setAppName("");
+    setAppBundle("");
+    setAppDescription("");
   };
+
+  const fetchAllApps = async (apps, setApps) => {
+    setLoading(true)
+    const response = await PostService.getAll();
+    setApps(response.data);
+    setLoading(false)
+  }
+  useEffect(() => {
+    fetchAllApps(apps, setApps, setLoading);
+  }, [appId]);
 
   return (
     <div
@@ -94,13 +100,28 @@ const AddApp = ({active, setActive, setApps, apps }) => {
           method="POST"
           action="https://app-state.herokuapp.com/v1/apps"
         >
-          <PopupInput value={appName} onChange={(e) => setAppName(e.target.value)} label={"Название"} />
-          <PopupTextarea value={appDescription} onChange={(e) => setAppDescription(e.target.value)} textareaLabel={"Описание"} />
-          <PopupInput value={appBundle} onChange={(e) => setAppBundle(e.target.value)}
-
+          <PopupInput
+            required
+            value={appName}
+            onChange={(e) => setAppName(e.target.value)}
+            label={"Название"}
+          />
+          <PopupTextarea
+            required
+            value={appDescription}
+            onChange={(e) => setAppDescription(e.target.value)}
+            textareaLabel={"Описание"}
+          />
+          <PopupInput
+            required
+            value={appBundle}
+            onChange={(e) => setAppBundle(e.target.value)}
             label={"Текстовое поле формата com.app.bundle"}
           />
-          <Checkbox checked={appPending} onChange={() => setAppPending(!appPending)}/>
+          <Checkbox
+            checked={appPending}
+            onChange={() => setAppPending(!appPending)}
+          />
           <Button text={"Добавить"} />
         </form>
       </div>
