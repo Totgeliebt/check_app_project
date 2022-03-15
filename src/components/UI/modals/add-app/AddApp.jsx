@@ -6,30 +6,22 @@ import Checkbox from "../../checkbox";
 import Button from "../../button";
 import crossIcon from "../../../../assets/icons/cross-icon.svg";
 import PostService from "../../../../api/PostService";
+import { removeWhiteSpaces } from "../../../../utils/helpers";
+import { useBus } from "react-bus";
 
-const AddApp = ({ active, setActive, setApps, apps, setLoading}) => {
-  const [appId, setAppId] = useState("");
+const AddApp = ({ active, setActive }) => {
   const [appName, setAppName] = useState("");
   const [appBundle, setAppBundle] = useState("");
   const [appDescription, setAppDescription] = useState("");
   const [appPending, setAppPending] = useState(false);
-  // const { fetchApp } = AddAppContainer;
 
+  const bus = useBus();
   //using custom hook - which is not working
   // const [fetchAllApps, isAppsLoading, appsError] = useFetching(async (apps, setApps) => {
   //   const response = await PostService.getAll();
   //   setApps(response.data);
   // })
-  const fetchApp = async (
-    appName,
-    appDescription,
-    appBundle,
-    appPending,
-    appId,
-    setAppId,
-    setApps,
-
-  ) => {
+  const fetchApp = async (appName, appDescription, appBundle, appPending) => {
     const appData = {
       name: `${appName}`,
       bundle: `${appBundle}`,
@@ -39,41 +31,26 @@ const AddApp = ({ active, setActive, setApps, apps, setLoading}) => {
 
     const response = await PostService.postAppData(appData)
       .then(function (response) {
-        setAppId(response.data.id);
-        //  console.log(response.data.id)
-        console.log(appId)
-        fetchAppById(response.data.id);
-
+        bus.emit("appAdded", response.data.id);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }
-
-  const fetchAppById = async (appId) => {
-    const response = await PostService.getAppById(appId);
-    console.log(response.data)
-    return response
-  }
-
+  };
   const handleAddApp = (e) => {
     e.preventDefault();
-    fetchApp(appName, appDescription, appBundle, appPending, appId, setAppId);
+    fetchApp(appName, appDescription, appBundle, appPending);
     setActive(false);
     setAppName("");
     setAppBundle("");
     setAppDescription("");
   };
 
-  const fetchAllApps = async (apps, setApps) => {
-    setLoading(true)
-    const response = await PostService.getAll();
-    setApps(response.data);
-    setLoading(false)
-  }
-  useEffect(() => {
-    fetchAllApps(apps, setApps, setLoading);
-  }, [appId]);
+  const handleBundleInput = (e) => {
+    setAppBundle(e.target.value);
+    removeWhiteSpaces(appBundle);
+    // console.log(removeWhiteSpaces(appBundle))
+  };
 
   return (
     <div
@@ -115,7 +92,8 @@ const AddApp = ({ active, setActive, setApps, apps, setLoading}) => {
           <PopupInput
             required
             value={appBundle}
-            onChange={(e) => setAppBundle(e.target.value)}
+            onChange={handleBundleInput}
+            // onChange={(e) => setAppBundle(e.target.value)}
             label={"Текстовое поле формата com.app.bundle"}
           />
           <Checkbox

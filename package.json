@@ -12,7 +12,9 @@
     "axios": "^0.26.0",
     "lottie-react": "^2.2.1",
     "react": "^17.0.2",
+    "react-bus": "^3.0.0",
     "react-dom": "^17.0.2",
+    "react-dropdown": "^1.9.2",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.4"
   },

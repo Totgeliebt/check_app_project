@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/UI/header";
 import classes from "./MainPage.module.css";
 import AddApp from "../../components/UI/modals/add-app";
-import ChangeDescription from "../../components/UI/modals/change-description";
-import ShareApp from "../../components/UI/modals/share-app";
-import DeleteApp from "../../components/UI/modals/delete-app";
 import AppsList from "../../components/UI/apps-list/AppsList";
-import AppItem from "../../components/UI/app-item/AppItem";
+import Lottie from "lottie-react";
+import animationData from "../../lotties/progressCircle.json";
+import { useFetching } from "../../hooks/useFetching";
 
-const MainPage = ({ onClick}) => {
+const MainPage = ({ onClick }) => {
   const [apps, setApps] = useState([]);
   const [modalActive, setModalActive] = useState(false);
-  const [modalEditActive, setModalEditActive] = useState(false);
-  const [modalDeleteActive, setModalDeleteActive] = useState(false);
-  const [modalShareActive, setModalShareActive] = useState(false);
+  const [isAppsLoading, setIsAppsLoading] = useState(false);
+
+  //   const [fetchAllApps, isAppsLoading, appsError] = useFetching(async (apps, setApps) => {
+  //     const response = await PostService.getAll();
+  //     setApps(response.data);
+  //   })
 
   return (
     <>
@@ -23,34 +25,20 @@ const MainPage = ({ onClick}) => {
         onClick={onClick}
       />
       <div className={classes.mainPage__wrapper}>
-        <AppsList apps={apps} setApps={setApps}/>
-        {/*<AppItem*/}
-        {/*  editActive={modalEditActive}*/}
-        {/*  setEditActive={setModalEditActive}*/}
-        {/*  setDeleteActive={setModalDeleteActive}*/}
-        {/*  setShareActive={setModalShareActive}*/}
-        {/*  onClick={onClick}*/}
-        {/*/>*/}
-        <AddApp
-          apps={apps}
-          setApps={setApps}
-          active={modalActive}
-          setActive={setModalActive}
-        />
-        <ChangeDescription
-          editActive={modalEditActive}
-          setEditActive={setModalEditActive}
-        />
-        <ShareApp
-          shareActive={modalShareActive}
-          setShareActive={setModalShareActive}
-          onClick={onClick}
-        />
-        <DeleteApp
-          deleteActive={modalDeleteActive}
-          setDeleteActive={setModalDeleteActive}
-          onClick={onClick}
-        />
+        {isAppsLoading ? (
+          <div className={classes.mainPage__lottie}>
+            <Lottie animationData={animationData} />
+          </div>
+        ) : (
+          <AppsList
+            apps={apps}
+            setApps={setApps}
+            onClick={onClick}
+            loading={isAppsLoading}
+            setLoading={setIsAppsLoading}
+          />
+        )}
+        <AddApp active={modalActive} setActive={setModalActive} />
       </div>
     </>
   );

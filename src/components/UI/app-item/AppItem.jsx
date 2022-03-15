@@ -27,6 +27,7 @@ const AppItem = ({
   const [modalDeleteActive, setModalDeleteActive] = useState(false);
   const [modalShareActive, setModalShareActive] = useState(false);
   const [modalEditActive, setModalEditActive] = useState(false);
+  const [descriptionIsEditing, setDescriptionIsEditing] = useState(description)
 
   async function deleteAppById(id) {
     const response = await PostService.deleteById(id);
@@ -38,6 +39,26 @@ const AppItem = ({
     console.log(apps);
   };
 
+  const changeDescription = async (id, descriptionIsEditing) => {
+    const descriptionData = {
+      id: `${id}`,
+      description: `${descriptionIsEditing}`
+    }
+    const response = PostService.editDescription(descriptionData)
+    .then(function (response) {
+      console.log(response)
+      setDescriptionIsEditing(response.data.description)
+        // bus.emit("appAdded", response.data.id);
+      })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+  const handleDescriptionChange = (id, descriptionValue) => {
+    console.log('working')
+    changeDescription(id, descriptionValue)
+    setModalEditActive(false)
+  }
   return (
     <>
       <div className={classes.card}>
@@ -101,6 +122,11 @@ const AppItem = ({
       <ChangeDescription
         editActive={modalEditActive}
         setEditActive={setModalEditActive}
+        description={description}
+        id={id}
+        onClick={handleDescriptionChange}
+        isEditing={descriptionIsEditing}
+        setIsEditing={setDescriptionIsEditing}
       />
       <ShareApp
         shareActive={modalShareActive}

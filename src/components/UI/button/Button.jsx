@@ -7,7 +7,7 @@ const Button = ({ onClick, text, type = "default" }) => {
 
   }
   if (type === "default") {
-    return <button className={classes.button}>{text}</button>;
+    return <button onClick={onClick} className={classes.button}>{text}</button>;
   }
 }
 export default Button;

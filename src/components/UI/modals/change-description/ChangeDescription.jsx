@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from './ChangeDescription.module.css';
 import crossIcon from "../../../../assets/icons/cross-icon.svg";
 import PopupTextarea from "../../textarea";
 import Button from "../../button";
+import PostService from "../../../../api/PostService";
 
-const ChangeDescription = ({ editActive, setEditActive, children }) => {
+const ChangeDescription = ({ editActive, setEditActive, onClick, isEditing, setIsEditing }) => {
+
   return (
     <div
       className={editActive ? `${classes.modal} ${classes.active}` : classes.modal}
@@ -25,8 +27,10 @@ const ChangeDescription = ({ editActive, setEditActive, children }) => {
           alt="cross"
           onClick={() => setEditActive(false)}
         />
-        <PopupTextarea textareaLabel={"Описание"} />
-        <Button text={"Сохранить"} />
+        <PopupTextarea textareaLabel={"Описание"}
+                       value={isEditing}
+                       onChange={(e)=>setIsEditing(e.target.value)}/>
+        <Button text={"Сохранить"} onClick={onClick}/>
       </div>
     </div>
   );
