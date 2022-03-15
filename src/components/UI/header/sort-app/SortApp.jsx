@@ -1,27 +1,24 @@
-import React, { useState } from "react";
-import classes from "../Header.module.css";
-import dropdown from "../../../../assets/icons/dropdown.svg";
+import React from "react";
+import "react-dropdown/style.css";
+import classes from "./SortApp.module.css";
+import Dropdown from "react-dropdown";
 
 const SortApp = () => {
-  const [isDropdownSortShown, setIsDropdownSortShown] = useState(false);
+  const options = ["Все приложения", "Удаленные приложения", "Пендинг"];
+  const defaultOption = options[0];
+
   return (
-    <div
-      className={classes.header__sortApp}
-      onClick={() => setIsDropdownSortShown(!isDropdownSortShown)}
-    >
-      <p className={classes.header__sortApp_chosen}>Все приложения</p>
-      <img
-        className={classes.header__sortApp_icon}
-        src={dropdown}
-        alt="dropdown"
+    <div>
+      <Dropdown
+        options={options}
+        // onChange={(e) => setSelected(e.target.value)}
+        controlClassName={classes.header__sortApp}
+        arrowClassName={classes.header__sortApp_arrow}
+        value={defaultOption}
+        menuClassName={classes.header__sortApp_menu}
+        placeholderClassName={classes.header__sortApp_placeholder}
+        placeholder="Все приложения"
       />
-      {isDropdownSortShown ? (
-        <div className={classes.header__sortApp_dropdown}>
-          <div className={classes.header__sortApp_title}>Все приложения</div>
-          <div className={classes.header__sortApp_title}>Удаленные приложения</div>
-          <div className={classes.header__sortApp_title}>Пендинг</div>
-        </div>
-      ) : null}
     </div>
   );
 };

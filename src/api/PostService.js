@@ -31,10 +31,10 @@ export default class PostService {
   static async editDescription(descriptionData) {
     return await axios.post(
       'https://app-state.herokuapp.com/v1/apps/update',descriptionData,
-      // {
-      //   "Content-Type": "application/json",
-      //   Accept: "application/json",
-      // }
+      {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }
     )
   }
 }

@@ -66,54 +66,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.header__sortApp {
-  width: 312px;
-  height: 66px;
-  background: #ffffff;
-  box-shadow: -4px -4px 20px rgba(255, 255, 255, 0.2),
-    4px 4px 20px rgba(0, 0, 0, 0.15);
-  border-radius: 7px;
-  display: flex;
-  flex-direction: column;
-  margin-right: 67px;
-  padding: 24px;
-  font-size: 18px;
-  line-height: 22px;
-  color: #404040;
-  position: relative;
-  cursor: pointer;
-}
-.header__sortApp_dropdown {
-  background-color: white;
-  width: 312px;
-  height: 156px;
-  box-shadow: -4px -4px 20px rgba(255, 255, 255, 0.2),
-    4px 4px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 7px 7px;
-  position: absolute;
-  top: 62px;
-  left: 0;
-  z-index: 100;
-}
-.header__sortApp_chosen {
-  font-weight: 600;
-}
-.header__sortApp_title {
-  font-size: 18px;
-  line-height: 22px;
-  color: #404040;
-  padding: 10px 24px;
-}
-.header__sortApp_title:first-of-type {
-  padding-top: 23px;
-}
-.header__sortApp_icon {
-  position: relative;
-  top: -18px;
-  left: 240px;
-  width: 20px;
-  height: 20px;
-}
 
 .header__searchApp {
   width: 272px;

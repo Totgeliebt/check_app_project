@@ -27,7 +27,7 @@ const AppItem = ({
   const [modalDeleteActive, setModalDeleteActive] = useState(false);
   const [modalShareActive, setModalShareActive] = useState(false);
   const [modalEditActive, setModalEditActive] = useState(false);
-  const [descriptionIsEditing, setDescriptionIsEditing] = useState(description)
+  const [descriptionIsEditing, setDescriptionIsEditing] = useState(description);
 
   async function deleteAppById(id) {
     const response = await PostService.deleteById(id);
@@ -39,26 +39,24 @@ const AppItem = ({
     console.log(apps);
   };
 
-  const changeDescription = async (id, descriptionIsEditing) => {
+  const changeDescription = async () => {
     const descriptionData = {
       id: `${id}`,
-      description: `${descriptionIsEditing}`
-    }
+      description: `${descriptionIsEditing}`,
+    };
+
     const response = PostService.editDescription(descriptionData)
-    .then(function (response) {
-      console.log(response)
-      setDescriptionIsEditing(response.data.description)
-        // bus.emit("appAdded", response.data.id);
+      .then(function (response) {
+        setDescriptionIsEditing(descriptionIsEditing);
       })
-        .catch(function (error) {
-          console.log(error);
-        });
-  }
-  const handleDescriptionChange = (id, descriptionValue) => {
-    console.log('working')
-    changeDescription(id, descriptionValue)
-    setModalEditActive(false)
-  }
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const handleDescriptionChange = (description) => {
+    changeDescription(description);
+    setModalEditActive(false);
+  };
   return (
     <>
       <div className={classes.card}>
@@ -71,7 +69,7 @@ const AppItem = ({
             {rateCounting}
           </p>
         </div>
-        <div className={classes.card__description}>{description}</div>
+        <div className={classes.card__description}>{descriptionIsEditing}</div>
         <div>
           <ul className={classes.card__details}>
             <li className={classes.card__details_updated}>
@@ -123,7 +121,6 @@ const AppItem = ({
         editActive={modalEditActive}
         setEditActive={setModalEditActive}
         description={description}
-        id={id}
         onClick={handleDescriptionChange}
         isEditing={descriptionIsEditing}
         setIsEditing={setDescriptionIsEditing}
