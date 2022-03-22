@@ -7,12 +7,12 @@ import { useBus, useListener } from "react-bus";
 const AppsList = ({ apps, setLoading, setApps, filteredApps }) => {
   const bus = useBus();
 
-  const fetchAllApps = async () => {
-    setLoading(true);
-    const response = await PostService.getAll();
-    setApps(response.data);
-    setLoading(false);
-  };
+  // const fetchAllApps = async () => {
+  //   setLoading(true);
+  //   const response = await PostService.getAll();
+  //   setApps(response.data);
+  //   setLoading(false);
+  // };
 
   const getId = (id) => {
     fetchAppById(id);
@@ -33,18 +33,16 @@ const AppsList = ({ apps, setLoading, setApps, filteredApps }) => {
   //   console.log(apps[0].state)
   // }
 
-  useEffect(() => {
-    if (!apps.length) {
-      console.log('fetchAllApps()')
-      fetchAllApps();
-    }
-  }, [apps]);
+  // useEffect(() => {
+  //   if (!apps.length) {
+  //     console.log('fetchAllApps()')
+  //     fetchAllApps();
+  //   }
+  // }, [apps]);
 
 
 
-  if (!apps.length) {
-    return <EmptyCard />;
-  }
+
   return (
     <>
       <div style={{ display: "flex", flexWrap: "wrap" }}>

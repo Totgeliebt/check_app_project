@@ -8,18 +8,18 @@ import animationData from "../../lotties/progressCircle.json";
 import AppListContainer from "../../components/UI/app-list-container/AppListContainer";
 
 const MainPage = ({ onClick }) => {
-  const [apps, setApps] = useState([]);
+  // const [apps, setApps] = useState([]);
   const [modalActive, setModalActive] = useState(false);
   const [isAppsLoading, setIsAppsLoading] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
 
-  const filteredApps = apps.filter((app) => {
-    return(
-      app.name.toLowerCase().includes(searchInputValue.toLowerCase()) ||
-      app.description.toLowerCase().includes(searchInputValue.toLowerCase()) ||
-      app.bundle.toLowerCase().includes(searchInputValue.toLowerCase())
-    );
-  });
+  // const filteredApps = apps.filter((app) => {
+  //   return(
+  //     app.name.toLowerCase().includes(searchInputValue.toLowerCase()) ||
+  //     app.description.toLowerCase().includes(searchInputValue.toLowerCase()) ||
+  //     app.bundle.toLowerCase().includes(searchInputValue.toLowerCase())
+  //   );
+  // });
 
 
 
@@ -27,8 +27,8 @@ const MainPage = ({ onClick }) => {
   return (
     <>
       <Header
-        apps={apps}
-        setApps={setApps}
+        // apps={apps}
+        // setApps={setApps}
         inputValue={searchInputValue}
         setInputValue={setSearchInputValue}
         active={modalActive}
@@ -42,12 +42,12 @@ const MainPage = ({ onClick }) => {
           </div>
         ) : (
           <AppListContainer
-            apps={apps}
-            setApps={setApps}
+            // apps={apps}
+            // setApps={setApps}
             onClick={onClick}
             loading={isAppsLoading}
             setLoading={setIsAppsLoading}
-            filteredApps={filteredApps}
+            // filteredApps={filteredApps}
           />
         )}
         <AddApp active={modalActive} setActive={setModalActive} />

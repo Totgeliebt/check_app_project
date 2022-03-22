@@ -2,17 +2,18 @@ import React, {useEffect, useState} from 'react';
 import AppsList from "../apps-list/AppsList";
 import PostService from "../../../api/PostService";
 import {useListener} from "react-bus";
+import EmptyCard from "../empty-card";
 
 const AppListContainer = ({apps, onClick, loading, setLoading, setApps, filteredApps}) => {
   const [globalApps, setGlobalApps] = useState([]);
 
   const fetchAllApps = async () => {
     setLoading(true);
-    const response = await PostService.getAll();
-    setGlobalApps(response.data);
+    // const response = await PostService.getAll();
+    // console.log('Hello')
+    // setGlobalApps(response.data);
     setLoading(false);
   };
-
 
   const getState = (selectedOption) => {
     console.log(selectedOption)
@@ -29,13 +30,15 @@ const AppListContainer = ({apps, onClick, loading, setLoading, setApps, filtered
   useListener("appState", getState);
 
   useEffect(() => {
-    console.log(globalApps.length)
-    if (globalApps.length===0) {
+    if(!globalApps.length){
      console.log('fetchAllApps()')
       fetchAllApps();
     }
   }, [globalApps]);
 
+  if (!globalApps.length) {
+    return <EmptyCard />;
+  }
   return (
     <div>
       <AppsList
