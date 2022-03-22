@@ -10,6 +10,7 @@ import { removeWhiteSpaces } from "../../../../utils/helpers";
 import { useBus } from "react-bus";
 
 const AddApp = ({ active, setActive }) => {
+
   const [appName, setAppName] = useState("");
   const [appBundle, setAppBundle] = useState("");
   const [appDescription, setAppDescription] = useState("");
@@ -41,7 +42,7 @@ const AddApp = ({ active, setActive }) => {
     e.preventDefault();
     fetchApp(appName, appDescription, appBundle, appPending);
     setActive(false);
-    setAppName("");
+    setAppName('')
     setAppBundle("");
     setAppDescription("");
   };
@@ -49,7 +50,6 @@ const AddApp = ({ active, setActive }) => {
   const handleBundleInput = (e) => {
     setAppBundle(e.target.value);
     removeWhiteSpaces(appBundle);
-    // console.log(removeWhiteSpaces(appBundle))
   };
 
   return (
@@ -93,7 +93,6 @@ const AddApp = ({ active, setActive }) => {
             required
             value={appBundle}
             onChange={handleBundleInput}
-            // onChange={(e) => setAppBundle(e.target.value)}
             label={"Текстовое поле формата com.app.bundle"}
           />
           <Checkbox

@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
 import classes from "../Header.module.css";
 import search from "../../../../assets/icons/search.svg";
+import {useBus} from "react-bus";
 
-const SearchApp = () => {
-  const [searchInputValue, setSearchInputValue] = useState('')
+const SearchApp = ({inputValue, setInputValue}) => {
+
+  // const bus = useBus();
+
+  // bus.emit('searching',searchInputValue)
+  // console.log(searchInputValue)
   return (
     <div className={classes.header__searchApp}>
       <img
@@ -13,8 +18,8 @@ const SearchApp = () => {
       />
       <input
         className={classes.header__searchApp_input}
-        value={searchInputValue}
-        onChange={e => setSearchInputValue(e.target.value)}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "../Header.module.css";
 import plus from "../../../../assets/icons/plus.svg";
 
-const AddAppHeaderBtn = ({setActive, onClick}) => {
+const AddAppHeaderBtn = ({setActive}) => {
   return (
     <div onClick={() => setActive(true)} className={classes.header__addApp}>
       <div className={classes.header__addApp_btn}>

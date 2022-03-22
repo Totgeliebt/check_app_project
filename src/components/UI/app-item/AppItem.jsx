@@ -7,8 +7,9 @@ import shareIcon from "../../../assets/icons/share-icon.svg";
 import ChangeDescription from "../modals/change-description";
 import DeleteApp from "../modals/delete-app";
 import ShareApp from "../modals/share-app";
-import axios from "axios";
 import PostService from "../../../api/PostService";
+import { addAt } from "../../../utils/helpers";
+import { useListener } from "react-bus";
 
 const AppItem = ({
   name,
@@ -21,13 +22,16 @@ const AppItem = ({
   rateCounting,
   installations,
   id,
+  state,
   apps,
   setApps,
+  filteredApps,
 }) => {
   const [modalDeleteActive, setModalDeleteActive] = useState(false);
   const [modalShareActive, setModalShareActive] = useState(false);
   const [modalEditActive, setModalEditActive] = useState(false);
   const [descriptionIsEditing, setDescriptionIsEditing] = useState(description);
+  const [appIsSharing, setAppIsSharing] = useState("");
 
   async function deleteAppById(id) {
     const response = await PostService.deleteById(id);
@@ -57,9 +61,39 @@ const AppItem = ({
     changeDescription(description);
     setModalEditActive(false);
   };
+
+  const handleShareChange = (e) => {
+    setAppIsSharing(e.target.value);
+  };
+
+  const shareApp = async () => {
+    const shareData = {
+      id: `${id}`,
+      shareTo: `${addAt(appIsSharing)}`,
+    };
+    console.log(shareData);
+    const response = PostService.share(shareData)
+      .then(function (response) {
+        setAppIsSharing(appIsSharing);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    setModalShareActive(false);
+    // console.log(response)
+  };
+
   return (
     <>
-      <div className={classes.card}>
+      <div
+        className={
+          state === 0
+            ? `${classes.card} ${classes.pending}`
+            : classes.card && state === 2
+            ? `${classes.card} ${classes.deleted}`
+            : classes.card
+        }
+      >
         <div className={classes.card__title_wrapper}>
           <img className={classes.card__icon} src={icon} alt="app icon" />
           <p className={classes.card__title}>{name}</p>
@@ -126,6 +160,10 @@ const AppItem = ({
         setIsEditing={setDescriptionIsEditing}
       />
       <ShareApp
+        isSharing={appIsSharing}
+        setIsSharing={setAppIsSharing}
+        onclick={shareApp}
+        onChange={handleShareChange}
         shareActive={modalShareActive}
         setShareActive={setModalShareActive}
       />

@@ -37,4 +37,15 @@ export default class PostService {
       }
     )
   }
+
+  static async share(shareData) {
+    return await axios.post(
+      'https://app-state.herokuapp.com/v1/apps/share',shareData,
+      {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }
+    )
+  }
+
 }

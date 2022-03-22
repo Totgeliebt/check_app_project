@@ -10,6 +10,14 @@
   flex-direction: column;
   position: relative;
 }
+.pending{
+  background: rgba(252, 221, 74, 0.08);
+  border: 1px solid rgba(252, 221, 74, 0.2);
+}
+.deleted{
+  background: rgba(255, 83, 109, 0.08);
+  border: 1px solid rgba(255, 83, 109, 0.1);
+}
 
 .card__icon {
   float: left;

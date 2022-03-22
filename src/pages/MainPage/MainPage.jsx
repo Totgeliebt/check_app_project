@@ -5,21 +5,31 @@ import AddApp from "../../components/UI/modals/add-app";
 import AppsList from "../../components/UI/apps-list/AppsList";
 import Lottie from "lottie-react";
 import animationData from "../../lotties/progressCircle.json";
-import { useFetching } from "../../hooks/useFetching";
 
 const MainPage = ({ onClick }) => {
   const [apps, setApps] = useState([]);
   const [modalActive, setModalActive] = useState(false);
   const [isAppsLoading, setIsAppsLoading] = useState(false);
+  const [searchInputValue, setSearchInputValue] = useState("");
 
-  //   const [fetchAllApps, isAppsLoading, appsError] = useFetching(async (apps, setApps) => {
-  //     const response = await PostService.getAll();
-  //     setApps(response.data);
-  //   })
+  const filteredApps = apps.filter((app) => {
+    return(
+      app.name.toLowerCase().includes(searchInputValue.toLowerCase()) ||
+      app.description.toLowerCase().includes(searchInputValue.toLowerCase()) ||
+      app.bundle.toLowerCase().includes(searchInputValue.toLowerCase())
+    );
+  });
+
+
+
 
   return (
     <>
       <Header
+        apps={apps}
+        setApps={setApps}
+        inputValue={searchInputValue}
+        setInputValue={setSearchInputValue}
         active={modalActive}
         setActive={setModalActive}
         onClick={onClick}
@@ -36,6 +46,7 @@ const MainPage = ({ onClick }) => {
             onClick={onClick}
             loading={isAppsLoading}
             setLoading={setIsAppsLoading}
+            filteredApps={filteredApps}
           />
         )}
         <AddApp active={modalActive} setActive={setModalActive} />
