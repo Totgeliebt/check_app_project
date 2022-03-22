@@ -5,6 +5,7 @@ import AddApp from "../../components/UI/modals/add-app";
 import AppsList from "../../components/UI/apps-list/AppsList";
 import Lottie from "lottie-react";
 import animationData from "../../lotties/progressCircle.json";
+import AppListContainer from "../../components/UI/app-list-container/AppListContainer";
 
 const MainPage = ({ onClick }) => {
   const [apps, setApps] = useState([]);
@@ -40,7 +41,7 @@ const MainPage = ({ onClick }) => {
             <Lottie animationData={animationData} />
           </div>
         ) : (
-          <AppsList
+          <AppListContainer
             apps={apps}
             setApps={setApps}
             onClick={onClick}

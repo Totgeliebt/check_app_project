@@ -33,40 +33,14 @@ const AppsList = ({ apps, setLoading, setApps, filteredApps }) => {
   //   console.log(apps[0].state)
   // }
 
-  const getState = (selectedOption) => {
-    console.log(selectedOption)
-    // const deletedApps = apps.filter((app) => {
-    //   return (selectedOption.includes('pendingApps') && app.state ===0) }
-    //
-    // const pendingApps = apps.filter((app) => {
-    //   return (selectedOption.includes('deletedApps') && app.state ===2)}
-    // }
-    //ver 1
-    // const sortedApps = apps.filter((app) => {
-    //
-    //   return (selectedOption.includes('pendingApps') && app.state ===0) ||
-    //     (selectedOption.includes('deletedApps') && app.state ===2)
-    // })
-    // setApps(sortedApps)
-    // // ver 2
-    if(selectedOption==='deletedApps') {
-      const filteredApps = apps.filter((app) => app.state === 2);
-      setApps(filteredApps)
-    } else if (selectedOption==='pendingApps'){
-      const filteredApps = apps.filter((app) => app.state === 0);
-      setApps(filteredApps)
-    } else {
-      setApps(filteredApps)
-    }
-  };
-  useListener("appState", getState);
-
-
   useEffect(() => {
     if (!apps.length) {
+      console.log('fetchAllApps()')
       fetchAllApps();
     }
   }, [apps]);
+
+
 
   if (!apps.length) {
     return <EmptyCard />;
