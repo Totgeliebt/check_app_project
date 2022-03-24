@@ -13,39 +13,36 @@ import { useListener } from "react-bus";
 
 const AppItem = ({
   name,
-  bundle,
   description,
-  icon,
-  version,
-  update,
-  rate,
   rateCounting,
-  installations,
   id,
   state,
-  apps,
-  setApps,
-  filteredApps,
+  app,
+  allApps,
+  setAllApps,
 }) => {
   const [modalDeleteActive, setModalDeleteActive] = useState(false);
   const [modalShareActive, setModalShareActive] = useState(false);
   const [modalEditActive, setModalEditActive] = useState(false);
-  const [descriptionIsEditing, setDescriptionIsEditing] = useState(description);
+  const [descriptionIsEditing, setDescriptionIsEditing] = useState(
+    app.description
+  );
   const [appIsSharing, setAppIsSharing] = useState("");
 
-  async function deleteAppById(id) {
+  const deleteAppById = async (id) => {
     const response = await PostService.deleteById(id);
     return response;
-  }
+  };
   const removeApp = () => {
-    setApps(apps.filter((app) => app.id !== id));
+    setAllApps(allApps.filter((appItem) => appItem.id !== id));
     deleteAppById(id);
-    console.log(apps);
+  console.log(allApps);
+    setModalDeleteActive(false);
   };
 
   const changeDescription = async () => {
     const descriptionData = {
-      id: `${id}`,
+      id: `${app.id}`,
       description: `${descriptionIsEditing}`,
     };
 
@@ -68,7 +65,7 @@ const AppItem = ({
 
   const shareApp = async () => {
     const shareData = {
-      id: `${id}`,
+      id: `${app.id}`,
       shareTo: `${addAt(appIsSharing)}`,
     };
     console.log(shareData);
@@ -95,11 +92,11 @@ const AppItem = ({
         }
       >
         <div className={classes.card__title_wrapper}>
-          <img className={classes.card__icon} src={icon} alt="app icon" />
-          <p className={classes.card__title}>{name}</p>
-          <p className={classes.card__bundle}>{bundle}</p>
+          <img className={classes.card__icon} src={app.icon} alt="app icon" />
+          <p className={classes.card__title}>{app.name}</p>
+          <p className={classes.card__bundle}>{app.bundle}</p>
           <p className={classes.card__rate_counting}>
-            <span className={classes.card__rate}>{rate}</span>
+            <span className={classes.card__rate}>{app.rate}</span>
             {rateCounting}
           </p>
         </div>
@@ -107,13 +104,13 @@ const AppItem = ({
         <div>
           <ul className={classes.card__details}>
             <li className={classes.card__details_updated}>
-              Обновлено <p>{update}</p>
+              Обновлено <p>{app.update}</p>
             </li>
             <li className={classes.card__details_version}>
-              Версия <p>{version}</p>
+              Версия <p>{app.version}</p>
             </li>
             <li className={classes.card__details_installed}>
-              Установки <p>{installations}</p>
+              Установки <p>{app.installations}</p>
             </li>
           </ul>
         </div>
@@ -144,7 +141,6 @@ const AppItem = ({
         </div>
       </div>
       <DeleteApp
-        apps={apps}
         setDeleteActive={setModalDeleteActive}
         deleteActive={modalDeleteActive}
         onclick={removeApp}
