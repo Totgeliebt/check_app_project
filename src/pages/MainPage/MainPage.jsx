@@ -15,7 +15,7 @@ const MainPage = ({ onClick }) => {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const filteredApps = allApps.filter((app) => {
+  const filteredApps = apps.filter((app) => {
     return (
       app.name.toLowerCase().includes(searchInputValue.toLowerCase()) ||
       app.description.toLowerCase().includes(searchInputValue.toLowerCase()) ||

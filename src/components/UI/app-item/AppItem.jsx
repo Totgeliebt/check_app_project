@@ -20,6 +20,8 @@ const AppItem = ({
   app,
   allApps,
   setAllApps,
+  setApps,
+  apps,
 }) => {
   const [modalDeleteActive, setModalDeleteActive] = useState(false);
   const [modalShareActive, setModalShareActive] = useState(false);
@@ -34,7 +36,7 @@ const AppItem = ({
     return response;
   };
   const removeApp = () => {
-    setAllApps(allApps.filter((appItem) => appItem.id !== id));
+    setApps(apps.filter((appItem) => appItem.id !== id));
     deleteAppById(id);
   console.log(allApps);
     setModalDeleteActive(false);

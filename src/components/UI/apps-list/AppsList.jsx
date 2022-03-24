@@ -23,6 +23,7 @@ console.log(apps)
   const fetchAppById = async (id) => {
     const response = await PostService.getAppById(id);
     setAllApps([...allApps, response.data]);
+    setApps([...apps, response.data])
     bus.emit("appState", response.data.state);
     return response;
   };
@@ -48,6 +49,8 @@ console.log(apps)
               state={app.state}
               allApps={allApps}
               setAllApps={setAllApps}
+              apps={apps}
+              setApps={setApps}
             />
           );
         })}
