@@ -1,52 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PopupInput from "../../input/PopupInput";
 import classes from "./AddApp.module.css";
 import PopupTextarea from "../../textarea/PopupTextarea";
 import Checkbox from "../../checkbox";
 import Button from "../../button";
 import crossIcon from "../../../../assets/icons/cross-icon.svg";
-import PostService from "../../../../api/PostService";
-import { removeWhiteSpaces } from "../../../../utils/helpers";
-import { useBus } from "react-bus";
 
-const AddApp = ({ active, setActive }) => {
-  const [appName, setAppName] = useState("");
-  const [appBundle, setAppBundle] = useState("");
-  const [appDescription, setAppDescription] = useState("");
-  const [appPending, setAppPending] = useState(false);
-
-  const bus = useBus();
-
-  const fetchApp = async (appName, appDescription, appBundle, appPending) => {
-    const appData = {
-      name: `${appName}`,
-      bundle: `${appBundle}`,
-      description: `${appDescription}`,
-      is_pending: `${appPending}`,
-    };
-
-    const response = await PostService.postAppData(appData)
-      .then(function (response) {
-        bus.emit("appAdded", response.data.id);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-  const handleAddApp = (e) => {
-    e.preventDefault();
-    fetchApp(appName, appDescription, appBundle, appPending);
-    setActive(false);
-    setAppName("");
-    setAppBundle("");
-    setAppDescription("");
-  };
-
-  const handleBundleInput = (e) => {
-    setAppBundle(e.target.value);
-    removeWhiteSpaces(appBundle);
-  };
-
+const AddAppComponent = ({
+  active,
+  setActive,
+  handleBundleInput,
+  handleAddApp,
+  appName,
+  setAppName,
+  appBundle,
+  appDescription,
+  setAppDescription,
+  appPending,
+  setAppPending,
+}) => {
   return (
     <div
       className={active ? `${classes.modal} ${classes.active}` : classes.modal}
@@ -101,4 +73,4 @@ const AddApp = ({ active, setActive }) => {
   );
 };
 
-export default AddApp;
+export default AddAppComponent;

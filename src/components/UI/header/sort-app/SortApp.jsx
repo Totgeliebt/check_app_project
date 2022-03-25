@@ -14,7 +14,6 @@ const SortApp = ({ setSelectedOption, selectedOption }) => {
 
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    console.log(selectedOption.value);
     bus.emit("appState", selectedOption.value);
   };
 

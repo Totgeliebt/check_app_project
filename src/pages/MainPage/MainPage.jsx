@@ -1,13 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import Header from "../../components/UI/header";
 import classes from "./MainPage.module.css";
-import AddApp from "../../components/UI/modals/add-app";
-import AppsList from "../../components/UI/apps-list/AppsList";
+import {AddApp} from '../../components/UI/modals/add-app/'
 import Lottie from "lottie-react";
 import animationData from "../../lotties/progressCircle.json";
 import { useListener } from "react-bus";
+import {AppsList} from "../../components/UI/apps-list";
 
-const MainPage = ({ onClick }) => {
+const MainPage = () => {
   const [apps, setApps] = useState([]);
   const [allApps, setAllApps] = useState([]);
   const [modalActive, setModalActive] = useState(false);
@@ -27,14 +27,11 @@ const MainPage = ({ onClick }) => {
     if (selectedOption === "deletedApps") {
       const sortedApps = allApps.filter((app) => app.state === 2);
       setApps(sortedApps);
-      console.log(sortedApps);
     } else if (selectedOption === "pendingApps") {
       const sortedApps = allApps.filter((app) => app.state === 0);
       setApps(sortedApps);
-      console.log(sortedApps);
     } else {
       setApps(allApps);
-      console.log("hwork3");
     }
   };
 

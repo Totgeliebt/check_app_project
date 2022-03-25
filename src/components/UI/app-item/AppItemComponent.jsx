@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./AppItem.module.css";
 import copylinkIcon from "../../../assets/icons/copylink-icon.svg";
 import deleteIcon from "../../../assets/icons/delete-icon.svg";
@@ -7,69 +7,24 @@ import shareIcon from "../../../assets/icons/share-icon.svg";
 import ChangeDescription from "../modals/change-description";
 import DeleteApp from "../modals/delete-app";
 import ShareApp from "../modals/share-app";
-import PostService from "../../../api/PostService";
-import { addAt } from "../../../utils/helpers";
 
-const AppItem = ({ id, state, app, setAllApps, setApps, apps }) => {
-  const [modalDeleteActive, setModalDeleteActive] = useState(false);
-  const [modalShareActive, setModalShareActive] = useState(false);
-  const [modalEditActive, setModalEditActive] = useState(false);
-  const [descriptionIsEditing, setDescriptionIsEditing] = useState(
-    app.description
-  );
-  const [appIsSharing, setAppIsSharing] = useState("");
-
-  const deleteAppById = async (id) => {
-    const response = await PostService.deleteById(id);
-    return response;
-  };
-  const removeApp = () => {
-    setApps(apps.filter((appItem) => appItem.id !== id));
-    setAllApps(apps);
-    deleteAppById(id);
-    setModalDeleteActive(false);
-  };
-
-  const changeDescription = async () => {
-    const descriptionData = {
-      id: `${app.id}`,
-      description: `${descriptionIsEditing}`,
-    };
-
-    const response = PostService.editDescription(descriptionData)
-      .then(function (response) {
-        setDescriptionIsEditing(descriptionIsEditing);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-  const handleDescriptionChange = (description) => {
-    changeDescription(description);
-    setModalEditActive(false);
-  };
-
-  const handleShareChange = (e) => {
-    setAppIsSharing(e.target.value);
-  };
-
-  const shareApp = async () => {
-    const shareData = {
-      id: `${app.id}`,
-      shareTo: `${addAt(appIsSharing)}`,
-    };
-    console.log(shareData);
-    const response = PostService.share(shareData)
-      .then(function (response) {
-        setAppIsSharing(appIsSharing);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    setModalShareActive(false);
-    // console.log(response)
-  };
-
+const AppItemComponent = ({
+  removeApp,
+  handleDescriptionChange,
+  descriptionIsEditing,
+  setDescriptionIsEditing,
+  modalDeleteActive,
+  setModalDeleteActive,
+  modalEditActive,
+  setModalEditActive,
+  state,
+  app,
+  handleShareChange,
+  shareApp,
+  modalShareActive,
+  setModalShareActive,
+  appIsSharing,
+}) => {
   return (
     <>
       <div
@@ -155,4 +110,4 @@ const AppItem = ({ id, state, app, setAllApps, setApps, apps }) => {
   );
 };
 
-export default AppItem;
+export default AppItemComponent;

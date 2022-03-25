@@ -1,3 +1,13 @@
-import AddApp from "./AddApp";
+import AddAppComponent from "./AddAppComponent";
+import AddAppContainer from "./AddAppContainer";
 
-export default AddApp;
+
+export const AddApp = (injectedProps) => {
+  return (
+    <AddAppContainer  {...injectedProps}>
+      {(props) => (
+        <AddAppComponent {...props} {...injectedProps}/>
+      )}
+    </AddAppContainer>
+  )
+}

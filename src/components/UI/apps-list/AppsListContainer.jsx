@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import AppItem from "../app-item/AppItem";
-import EmptyCard from "../empty-card";
-import PostService from "../../../api/PostService";
+import React, { useEffect } from "react";
 import { useBus, useListener } from "react-bus";
+import PostService from "../../../api/PostService";
+import EmptyCard from "../empty-card";
 
-const AppsList = ({
+const AppsListContainer = ({
   setLoading,
-  apps,
-  setApps,
-  filteredApps,
   allApps,
   setAllApps,
+  setApps,
+  apps,
+  children,
 }) => {
   const bus = useBus();
 
@@ -21,7 +20,6 @@ const AppsList = ({
     setApps(allApps);
     setLoading(false);
   };
-  console.log(apps);
   const getId = (id) => {
     fetchAppById(id);
   };
@@ -44,25 +42,10 @@ const AppsList = ({
   if (!allApps.length) {
     return <EmptyCard />;
   }
-  return (
-    <>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {filteredApps.map((app, id) => {
-          return (
-            <AppItem
-              app={app}
-              key={app.id}
-              id={app.id}
-              state={app.state}
-              setAllApps={setAllApps}
-              apps={apps}
-              setApps={setApps}
-            />
-          );
-        })}
-      </div>
-    </>
-  );
+
+  const props = {};
+
+  return children(props);
 };
 
-export default AppsList;
+export default AppsListContainer;
