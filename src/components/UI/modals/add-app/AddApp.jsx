@@ -10,18 +10,13 @@ import { removeWhiteSpaces } from "../../../../utils/helpers";
 import { useBus } from "react-bus";
 
 const AddApp = ({ active, setActive }) => {
-
   const [appName, setAppName] = useState("");
   const [appBundle, setAppBundle] = useState("");
   const [appDescription, setAppDescription] = useState("");
   const [appPending, setAppPending] = useState(false);
 
   const bus = useBus();
-  //using custom hook - which is not working
-  // const [fetchAllApps, isAppsLoading, appsError] = useFetching(async (apps, setApps) => {
-  //   const response = await PostService.getAll();
-  //   setApps(response.data);
-  // })
+
   const fetchApp = async (appName, appDescription, appBundle, appPending) => {
     const appData = {
       name: `${appName}`,
@@ -42,7 +37,7 @@ const AddApp = ({ active, setActive }) => {
     e.preventDefault();
     fetchApp(appName, appDescription, appBundle, appPending);
     setActive(false);
-    setAppName('')
+    setAppName("");
     setAppBundle("");
     setAppDescription("");
   };

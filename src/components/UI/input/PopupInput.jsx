@@ -4,7 +4,6 @@ import classes from "./PopupInput.module.css";
 // BaseButton
 // type={'popup'}
 const PopupInput = ({ required, value, onChange, label, type = "default" }) => {
-
   if (type === "popup") {
     return (
       <div>

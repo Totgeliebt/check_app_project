@@ -1,14 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import classes from "../Header.module.css";
 import search from "../../../../assets/icons/search.svg";
-import {useBus} from "react-bus";
+import { useBus } from "react-bus";
 
-const SearchApp = ({inputValue, setInputValue}) => {
-
-  // const bus = useBus();
-
-  // bus.emit('searching',searchInputValue)
-  // console.log(searchInputValue)
+const SearchApp = ({ inputValue, setInputValue }) => {
   return (
     <div className={classes.header__searchApp}>
       <img

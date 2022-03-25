@@ -22,12 +22,6 @@ const MainPage = ({ onClick }) => {
       app.bundle.toLowerCase().includes(searchInputValue.toLowerCase())
     );
   });
-  // const getState = React.useCallback((selectedOption) => {
-  // const sortedApps = apps.filter((app) => {
-  //   return (selectedOption.includes('pendingApps') && app.state === 0) ||
-  //     (selectedOption.includes('deletedApps') && app.state === 2)
-  // })
-  // setApps(sortedApps)
 
   const getState = (selectedOption) => {
     if (selectedOption === "deletedApps") {
@@ -46,15 +40,12 @@ const MainPage = ({ onClick }) => {
 
   useListener("appState", getState);
 
-  // useEffect =
   return (
     <>
       <Header
         inputValue={searchInputValue}
         setInputValue={setSearchInputValue}
-        active={modalActive}
         setActive={setModalActive}
-        onClick={onClick}
         setSelectedOption={setSelectedOption}
         selectedOption={selectedOption}
       />
@@ -69,11 +60,7 @@ const MainPage = ({ onClick }) => {
             setAllApps={setAllApps}
             apps={apps}
             setApps={setApps}
-            onClick={onClick}
-            loading={isAppsLoading}
             setLoading={setIsAppsLoading}
-            searchInputValue={searchInputValue}
-            setSearchInputValue={setSearchInputValue}
             filteredApps={filteredApps}
           />
         )}

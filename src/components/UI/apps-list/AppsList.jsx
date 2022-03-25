@@ -1,20 +1,27 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import AppItem from "../app-item/AppItem";
 import EmptyCard from "../empty-card";
 import PostService from "../../../api/PostService";
 import { useBus, useListener } from "react-bus";
 
-const AppsList = ({ setLoading, apps, setApps, filteredApps, allApps, setAllApps }) => {
+const AppsList = ({
+  setLoading,
+  apps,
+  setApps,
+  filteredApps,
+  allApps,
+  setAllApps,
+}) => {
   const bus = useBus();
 
   const fetchAllApps = async () => {
     setLoading(true);
     const response = await PostService.getAll();
-    setApps(response.data);
     setAllApps(response.data);
+    setApps(allApps);
     setLoading(false);
   };
-console.log(apps)
+  console.log(apps);
   const getId = (id) => {
     fetchAppById(id);
   };
@@ -23,7 +30,7 @@ console.log(apps)
   const fetchAppById = async (id) => {
     const response = await PostService.getAppById(id);
     setAllApps([...allApps, response.data]);
-    setApps([...apps, response.data])
+    setApps(allApps);
     bus.emit("appState", response.data.state);
     return response;
   };
@@ -47,7 +54,6 @@ console.log(apps)
               key={app.id}
               id={app.id}
               state={app.state}
-              allApps={allApps}
               setAllApps={setAllApps}
               apps={apps}
               setApps={setApps}

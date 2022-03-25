@@ -9,20 +9,8 @@ import DeleteApp from "../modals/delete-app";
 import ShareApp from "../modals/share-app";
 import PostService from "../../../api/PostService";
 import { addAt } from "../../../utils/helpers";
-import { useListener } from "react-bus";
 
-const AppItem = ({
-  name,
-  description,
-  rateCounting,
-  id,
-  state,
-  app,
-  allApps,
-  setAllApps,
-  setApps,
-  apps,
-}) => {
+const AppItem = ({ id, state, app, setAllApps, setApps, apps }) => {
   const [modalDeleteActive, setModalDeleteActive] = useState(false);
   const [modalShareActive, setModalShareActive] = useState(false);
   const [modalEditActive, setModalEditActive] = useState(false);
@@ -37,8 +25,8 @@ const AppItem = ({
   };
   const removeApp = () => {
     setApps(apps.filter((appItem) => appItem.id !== id));
+    setAllApps(apps);
     deleteAppById(id);
-  console.log(allApps);
     setModalDeleteActive(false);
   };
 
@@ -99,7 +87,7 @@ const AppItem = ({
           <p className={classes.card__bundle}>{app.bundle}</p>
           <p className={classes.card__rate_counting}>
             <span className={classes.card__rate}>{app.rate}</span>
-            {rateCounting}
+            {app.rate_count}
           </p>
         </div>
         <div className={classes.card__description}>{descriptionIsEditing}</div>
@@ -146,20 +134,18 @@ const AppItem = ({
         setDeleteActive={setModalDeleteActive}
         deleteActive={modalDeleteActive}
         onclick={removeApp}
-        name={name}
+        name={app.name}
       />
 
       <ChangeDescription
         editActive={modalEditActive}
         setEditActive={setModalEditActive}
-        description={description}
         onClick={handleDescriptionChange}
         isEditing={descriptionIsEditing}
         setIsEditing={setDescriptionIsEditing}
       />
       <ShareApp
         isSharing={appIsSharing}
-        setIsSharing={setAppIsSharing}
         onclick={shareApp}
         onChange={handleShareChange}
         shareActive={modalShareActive}

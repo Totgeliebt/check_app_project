@@ -7,7 +7,9 @@ const DeleteApp = ({ deleteActive, setDeleteActive, onclick, name}) => {
 
   return (
     <div
-      className={deleteActive ? `${classes.modal} ${classes.active}` : classes.modal}
+      className={
+        deleteActive ? `${classes.modal} ${classes.active}` : classes.modal
+      }
       onClick={() => setDeleteActive(false)}
     >
       <div
@@ -19,11 +21,21 @@ const DeleteApp = ({ deleteActive, setDeleteActive, onclick, name}) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className={classes.modal__content_attention}>
-        <img className={classes.modal__content_icon} src={attentionIcon} alt="attention"/>
-        <h2 className={classes.modal__content_title}>Уверены, что хотите удалить приложение «{name}»?</h2>
+          <img
+            className={classes.modal__content_icon}
+            src={attentionIcon}
+            alt="attention"
+          />
+          <h2 className={classes.modal__content_title}>
+            Уверены, что хотите удалить приложение «{name}»?
+          </h2>
         </div>
-        <Button type={'mini'} text={'Нет'} onClick={() => setDeleteActive(false)}/>
-        <Button type={'mini'} text={'Да'} onClick={onclick}/>
+        <Button
+          type={"mini"}
+          text={"Нет"}
+          onClick={() => setDeleteActive(false)}
+        />
+        <Button type={"mini"} text={"Да"} onClick={onclick} />
       </div>
     </div>
   );

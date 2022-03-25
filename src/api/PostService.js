@@ -30,22 +30,23 @@ export default class PostService {
 
   static async editDescription(descriptionData) {
     return await axios.post(
-      'https://app-state.herokuapp.com/v1/apps/update',descriptionData,
+      "https://app-state.herokuapp.com/v1/apps/update",
+      descriptionData,
       {
         "Content-Type": "application/json",
         Accept: "application/json",
       }
-    )
+    );
   }
 
   static async share(shareData) {
     return await axios.post(
-      'https://app-state.herokuapp.com/v1/apps/share',shareData,
+      "https://app-state.herokuapp.com/v1/apps/share",
+      shareData,
       {
         "Content-Type": "application/json",
         Accept: "application/json",
       }
-    )
+    );
   }
-
 }
