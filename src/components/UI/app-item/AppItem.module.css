@@ -1,0 +1,108 @@
+.card {
+  width: 401px;
+  height: 280px;
+  background: #ffffff;
+  box-shadow: -4px -4px 20px #ffffff, 4px 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 7px;
+  margin: 0 20px 20px 0;
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  position: relative;
+}
+.pending{
+  background: rgba(252, 221, 74, 0.08);
+  border: 1px solid rgba(252, 221, 74, 0.2);
+}
+.deleted{
+  background: rgba(255, 83, 109, 0.08);
+  border: 1px solid rgba(255, 83, 109, 0.1);
+}
+
+.card__icon {
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+.card__title {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 29px;
+  color: #404040;
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 220px;
+}
+.card__bundle,
+.card__rate_counting{
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+  opacity: 0.5;
+  margin-bottom: 8px;
+}
+.card__rate {
+  margin-right: 40px;
+}
+.card__description {
+  width: 301px;
+  height: 70px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f3f3f3;
+  margin-bottom: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card__icons {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: 56px;
+  height: 226px;
+  padding: 0;
+  justify-content: center;
+  background-color: #f3f3f3;
+  border-radius: 30px 0 0 30px;
+  cursor: pointer;
+}
+.card__details {
+  list-style: none;
+  height: 46px;
+  width: 301px;
+  display: flex;
+  font-size: 15px;
+  line-height: 22px;
+  color: #404040;
+  justify-content: space-between;
+  position: relative;
+}
+.card__details_updated {
+  width: 80px;
+}
+.card__details_updated:after{
+  content: '';
+  width: 1px;
+  height: 33px;
+  background-color: #F3F3F3;
+display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 100px;
+}
+.card__details_version:after {
+  content: '';
+  width: 1px;
+  height: 33px;
+  background-color: #F3F3F3;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 100px;
+}
+
