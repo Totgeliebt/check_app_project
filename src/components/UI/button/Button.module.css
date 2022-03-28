@@ -30,3 +30,15 @@
   background: linear-gradient(272.12deg, #55e3cd 0%, #319fb9 99.36%);
   color: #FFFFFF;
 }
+.button_enter {
+  width: 312px;
+  height: 60px;
+  background: linear-gradient(272.12deg, #55e3cd 0%, #319fb9 99.36%);
+  border-radius: 7px;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 40px;
+  cursor: pointer;
+}

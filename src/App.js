@@ -1,9 +1,7 @@
 import "./App.css";
-import Header from "./components/UI/header/Header";
-import EmptyCard from "./components/UI/empty-card/EmptyCard";
-import AddAppPopup from "./components/UI/modals/add-app/AddAppComponent";
 import MainPage from "./pages/MainPage/MainPage";
 import { Provider as BusProvider } from 'react-bus'
+import React from "react";
 
 export const App = () => {
   return (
