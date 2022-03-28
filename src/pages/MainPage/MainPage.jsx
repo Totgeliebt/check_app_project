@@ -6,7 +6,7 @@ import Lottie from "lottie-react";
 import animationData from "../../lotties/progressCircle.json";
 import { useListener } from "react-bus";
 import {AppsList} from "../../components/UI/apps-list";
-import Authorization from "../Authorization/Authorization";
+
 
 const MainPage = () => {
   const [apps, setApps] = useState([]);
