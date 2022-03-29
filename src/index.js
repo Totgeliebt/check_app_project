@@ -10,4 +10,4 @@ ReactDOM.render(
   <TelegramLoginButton dataOnauth={handleTelegramResponse} botName="testBot" />,
   document.getElementById('telegramButton')
 );
-// ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
