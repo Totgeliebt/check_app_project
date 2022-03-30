@@ -6,7 +6,7 @@ import axios from "axios";
 // import TelegramLoginButton from 'react-telegram-login';
 
 export const App = () => {
-  axios.defaults.withCredentials = true
+  // axios.defaults.withCredentials = true
   // const handleTelegramResponse = response => {
   //   console.log(response);
   // };
