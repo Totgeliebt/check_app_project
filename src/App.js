@@ -10,7 +10,7 @@ export const App = () => {
   const handleTelegramResponse = (response) => {
     console.log("from teleg:", response);
     postUserData(response);
-    console.log("from server", response);
+
   };
   const postUserData = async (response) => {
     return await PostService.postUserData(response);
