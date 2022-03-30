@@ -6,7 +6,7 @@ import TelegramLoginButton from "react-telegram-login";
 import PostService from "./api/PostService";
 
 export const App = () => {
-  // axios.defaults.withCredentials = true
+
   const handleTelegramResponse = (response) => {
     console.log("from teleg:", response);
     postUserData(response);
