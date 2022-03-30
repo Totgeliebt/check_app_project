@@ -67,6 +67,7 @@ const AppItemComponent = ({
             alt="edit"
           />
           <img
+            onClick={() =>  navigator.clipboard.writeText(app.app_link)}
             className={classes.card__icons_copylink}
             src={copylinkIcon}
             alt="copy link"
