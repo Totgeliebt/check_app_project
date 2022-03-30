@@ -49,4 +49,15 @@ export default class PostService {
       }
     );
   }
+
+  static async postUserData(user) {
+    return await axios.post(
+      "https://app-state.herokuapp.com/login",
+      user,
+      {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }
+    );
+  }
 }
