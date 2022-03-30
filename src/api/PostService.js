@@ -50,14 +50,14 @@ export default class PostService {
     );
   }
 
-  // static async postUserData(user) {
-  //   return await axios.post(
-  //     "https://app-state.herokuapp.com/login",
-  //     user,
-  //     {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     }
-  //   );
-  // }
+  static async postUserData(response) {
+    return await axios.post(
+      "https://app-state.herokuapp.com/login",
+      response,
+      {
+        "Content-Type": "application/json;charset=UTF-8",
+        Accept: "application/json",
+      }
+    );
+  }
 }

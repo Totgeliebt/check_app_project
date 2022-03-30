@@ -1,21 +1,28 @@
 import "./App.css";
 import MainPage from "./pages/MainPage/MainPage";
-import { Provider as BusProvider } from 'react-bus'
+import {Provider as BusProvider} from "react-bus";
 import React from "react";
-import axios from "axios";
-import TelegramLoginButton from 'react-telegram-login';
+import TelegramLoginButton from "react-telegram-login";
+import PostService from "./api/PostService";
 
 export const App = () => {
   // axios.defaults.withCredentials = true
-  const handleTelegramResponse = response => {
-    console.log(response);
+  const handleTelegramResponse = (response) => {
+    console.log("from teleg:", response);
+    postUserData(response);
+    console.log("from server", response);
+  };
+  const postUserData = async (response) => {
+    return await PostService.postUserData(response);
   };
   return (
-
     <>
       <BusProvider>
-        <TelegramLoginButton dataOnauth={handleTelegramResponse} botName="zhuravskaya_bot" />
-      <MainPage />
+        <TelegramLoginButton
+          dataOnauth={handleTelegramResponse}
+          botName="zhuravskaya_bot"
+        />
+        <MainPage />
       </BusProvider>
     </>
   );
