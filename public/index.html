@@ -18,12 +18,13 @@
           },
           //make sure to serialize your JSON body
           body: JSON.stringify({
-            "auth_date": 1644882806,
-            "first_name": user.first_name,
-            "hash": "5c7e62d8267c511748eff7e76441d2c36cdab4412bd017d48a6b61290e6749d7",
-            "id": user.id,
-            "photo_url": "https://t.me/i/userpic/320/CYVqOaXHnNsH8HnVezxPUJCk3vxubfCpKbiOZIdSF_0.jpg",
-            "username": user.username
+            user
+            // "auth_date": 1644882806,
+            // "first_name": user.first_name,
+            // "hash": "5c7e62d8267c511748eff7e76441d2c36cdab4412bd017d48a6b61290e6749d7",
+            // "id": user.id,
+            // "photo_url": "https://t.me/i/userpic/320/CYVqOaXHnNsH8HnVezxPUJCk3vxubfCpKbiOZIdSF_0.jpg",
+            // "username": user.username
           })
         })
                 .then( (response) => {
