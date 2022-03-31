@@ -1,6 +1,7 @@
 import axios from "axios";
-
+axios.defaults.withCredentials = true;
 export default class PostService {
+
   static async postAppData(appData) {
     return await axios.post(
       "https://app-state.herokuapp.com/v1/apps",
@@ -57,8 +58,7 @@ export default class PostService {
       {
         "Content-Type": "application/json;charset=UTF-8",
         Accept: "application/json",
-        withCredentials: true,
-        mode: 'no-cors',
+        // mode: 'no-cors',
       },
     );
   }
