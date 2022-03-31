@@ -1,6 +1,6 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
-axios.defaults.headers['Content-Type'] = 'application/json'
+// axios.defaults.headers['Content-Type'] = 'application/json'
 
 export default class PostService {
 
@@ -56,10 +56,9 @@ export default class PostService {
   static async login(response) {
     return await axios.post(
       "https://app-state.herokuapp.com/login",
-      response,
-      {
+      {'body':response},{headers: {
         "Content-Type": "application/json",
-        Accept: '*/*',
+        Accept: '*/*',}
         // mode: 'no-cors',
       },
     );
