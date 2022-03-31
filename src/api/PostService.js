@@ -57,7 +57,8 @@ export default class PostService {
       {
         "Content-Type": "application/json;charset=UTF-8",
         Accept: "application/json",
-        // withCredentials: true
+        withCredentials: true,
+        mode: 'no-cors',
       },
     );
   }
