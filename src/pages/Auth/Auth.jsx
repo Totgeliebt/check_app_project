@@ -6,11 +6,11 @@ const Auth = () => {
 
   const handleTelegramResponse = (response) => {
     console.log("from teleg:", response);
-    postUserData(response);
+    handleLogin(response);
 
   };
-  const postUserData = async (response) => {
-    return await PostService.postUserData(response);
+  const handleLogin = async (response) => {
+    return await PostService.login(response);
   };
   return (
     <div>
