@@ -56,8 +56,8 @@ export default class PostService {
       "https://app-state.herokuapp.com/login",
       response,
       {
-        "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json;charset=UTF-8",
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        Accept: '*/*',
         // mode: 'no-cors',
       },
     );
