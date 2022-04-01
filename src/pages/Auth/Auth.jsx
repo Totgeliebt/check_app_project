@@ -9,8 +9,8 @@ const Auth = () => {
     const newRes =  h_clone(response)
 console.log(newRes)
     console.log(typeof response)
-    handleLogin(newRes);
-    console.log(response.id)
+    handleLogin(response);
+    console.log(response)
   };
   function h_clone(response){
     var result = Object.prototype.toString.call(response);
@@ -40,14 +40,14 @@ console.log(newRes)
       return clone;
     }
   }
-  const handleLogin = async (newRes) => {
+  const handleLogin = async (response) => {
       const res = await fetch( "https://app-state.herokuapp.com/login", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json;charset=UTF-8'
         },
-        body: JSON.stringify(newRes)
+        body: JSON.stringify(response)
       });
       console.log(res);
     };
