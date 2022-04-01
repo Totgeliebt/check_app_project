@@ -11,8 +11,17 @@ const Auth = () => {
 
   };
   const handleLogin = async (response) => {
-    return await PostService.login(response);
-  };
+      const res = await fetch( "https://app-state.herokuapp.com/login", {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(response)
+      });
+      console.log(res);
+    };
+
   return (
     <div>
       <TelegramLoginButton

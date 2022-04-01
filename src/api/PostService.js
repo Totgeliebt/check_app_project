@@ -61,13 +61,13 @@ export default class PostService {
     );
   }
 
-  static async login(response) {
-    return await axios.post(
-      "https://app-state.herokuapp.com/login",
-      {'body':response},{headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",}
-      },
-    );
-  }
+  // static async login(response) {
+  //   return await axios.post(
+  //     "https://app-state.herokuapp.com/login",
+  //     {'body':response},{headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",}
+  //     },
+  //   );
+  // }
 }
