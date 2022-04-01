@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "buffer": "^6.0.3",
     "iconv-lite": "^0.6.3",
     "lottie-react": "^2.2.1",
     "react": "^17.0.2",
@@ -20,10 +21,6 @@
     "react-telegram-login": "^1.1.2",
     "web-vitals": "^2.1.4"
   },
-  "engines": {
-  "npm": ">=6.0.0",
-  "node": ">=10.0.0"
-},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
