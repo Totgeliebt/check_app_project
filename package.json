@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "iconv-lite": "^0.6.3",
     "lottie-react": "^2.2.1",
     "react": "^17.0.2",
     "react-bus": "^3.0.0",

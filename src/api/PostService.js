@@ -1,6 +1,14 @@
 import axios from "axios";
+let iconv = require('iconv-lite');
+
 axios.defaults.withCredentials = true;
-// axios.defaults.headers['Content-Type'] = 'application/json'
+axios.interceptors.response.use(response => {
+  let ctype = response.headers["content-type"];
+  if (ctype.includes("charset=ISO-8859-1")) {
+    response.data = iconv.decode(response.data, 'ISO-8859-1');
+  }
+  return response;
+})
 
 export default class PostService {
 
