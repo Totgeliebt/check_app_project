@@ -9,8 +9,7 @@ const Auth = () => {
     const newRes =  h_clone(response)
 console.log(newRes)
     console.log(typeof response)
-    handleLogin(response);
-    console.log(response)
+    handleLogin(newRes);
     console.log(response.id)
   };
   function h_clone(response){
@@ -41,14 +40,14 @@ console.log(newRes)
       return clone;
     }
   }
-  const handleLogin = async (response) => {
+  const handleLogin = async (newRes) => {
       const res = await fetch( "https://app-state.herokuapp.com/login", {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(response)
+        body: JSON.stringify(newRes)
       });
       console.log(res);
     };
