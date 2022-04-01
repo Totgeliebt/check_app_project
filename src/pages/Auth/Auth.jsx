@@ -7,6 +7,7 @@ const Auth = () => {
   const handleTelegramResponse = (response) => {
     console.log("from teleg:", response);
     handleLogin(response);
+    console.log(response)
 
   };
   const handleLogin = async (response) => {
