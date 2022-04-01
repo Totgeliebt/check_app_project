@@ -1,7 +1,7 @@
 import axios from "axios";
 // let iconv = require('iconv-lite');
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 // axios.interceptors.response.use(response => {
 //   let ctype = response.headers["content-type"];
 //   if (ctype.includes("charset=ISO-8859-1")) {
@@ -23,7 +23,8 @@ export default class PostService {
   }
 
   static async getAll() {
-    return await axios.get("https://app-state.herokuapp.com/v1/apps");
+    return await axios.get("https://app-state.herokuapp.com/v1/apps", {withCredentials: true});
+
   }
 
   static async getAppById(id) {
@@ -65,6 +66,7 @@ export default class PostService {
       "https://app-state.herokuapp.com/login",
        JSON.stringify(response),
       {
+        withCredentials:true,
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
           Accept: "application/json",
