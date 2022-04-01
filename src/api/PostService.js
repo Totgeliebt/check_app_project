@@ -64,7 +64,8 @@ export default class PostService {
   static async login(response) {
     return await axios.post(
       "https://app-state.herokuapp.com/login",
-       JSON.stringify(response),
+       // JSON.stringify(response),
+      {response},
       {
         withCredentials:true,
         headers: {
