@@ -12,7 +12,7 @@ const Auth = () => {
   const handleLogin = async (response) => {
       const res = await fetch( "https://app-state.herokuapp.com/login", {
         method: 'POST',
-        credentials: 'include',
+        credentials: "same-origin",
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json;charset=UTF-8'
