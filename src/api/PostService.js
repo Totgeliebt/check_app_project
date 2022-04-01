@@ -57,8 +57,8 @@ export default class PostService {
     return await axios.post(
       "https://app-state.herokuapp.com/login",
       {'body':response},{headers: {
-        "Content-Type": "application/json",
-        Accept: '*/*',}
+          "Content-Type": "application/json",
+          Accept: "application/json",}
         // mode: 'no-cors',
       },
     );
