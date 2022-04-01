@@ -1,17 +1,16 @@
 import axios from "axios";
-let iconv = require('iconv-lite');
+// let iconv = require('iconv-lite');
 
 axios.defaults.withCredentials = true;
-axios.interceptors.response.use(response => {
-  let ctype = response.headers["content-type"];
-  if (ctype.includes("charset=ISO-8859-1")) {
-    response.data = iconv.decode(response.data, 'ISO-8859-1');
-  }
-  return response;
-})
+// axios.interceptors.response.use(response => {
+//   let ctype = response.headers["content-type"];
+//   if (ctype.includes("charset=ISO-8859-1")) {
+//     response.data = iconv.decode(response.data, 'ISO-8859-1');
+//   }
+//   return response;
+// })
 
 export default class PostService {
-
   static async postAppData(appData) {
     return await axios.post(
       "https://app-state.herokuapp.com/v1/apps",
@@ -61,13 +60,16 @@ export default class PostService {
     );
   }
 
-  // static async login(response) {
-  //   return await axios.post(
-  //     "https://app-state.herokuapp.com/login",
-  //     {'body':response},{headers: {
-  //         "Content-Type": "application/json",
-  //         Accept: "application/json",}
-  //     },
-  //   );
-  // }
+  static async login(response) {
+    return await axios.post(
+      "https://app-state.herokuapp.com/login",
+       JSON.stringify(response),
+      {
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          Accept: "application/json",
+        },
+      }
+    );
+  }
 }

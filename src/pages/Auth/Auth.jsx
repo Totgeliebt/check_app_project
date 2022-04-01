@@ -1,5 +1,6 @@
 import React from "react";
 import TelegramLoginButton from "react-telegram-login";
+import PostService from "../../api/PostService";
 
 const Auth = () => {
   const handleTelegramResponse = (response) => {
@@ -9,16 +10,16 @@ const Auth = () => {
   };
 
   const handleLogin = async (response) => {
-    const res = await fetch("https://app-state.herokuapp.com/login", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      method: "POST",
-      body: JSON.stringify(response),
-    });
-    console.log(res);
+    return await PostService.login(response)
+    // const res = await fetch("https://app-state.herokuapp.com/login", {
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   credentials: "include",
+    //   method: "POST",
+    //   body: JSON.stringify(response),
+    // });
   };
 
   return (
