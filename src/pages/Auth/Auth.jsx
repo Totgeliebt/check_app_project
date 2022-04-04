@@ -1,12 +1,13 @@
 import React from "react";
 import TelegramLoginButton from "react-telegram-login";
 import PostService from "../../api/PostService";
-
+import axios  from "axios"
 const Auth = () => {
   const handleTelegramResponse = (response) => {
     console.log("from teleg:", response);
     handleLogin(response);
     console.log(document.cookie);
+    axios.defaults.headers.cookie = response.headers['set-cookie']
     // document.cookie = "stel_token=fd27f3c865959d209f661de744463a5cfd27f3defd26ff5102f0c1fbba10b16632dc7Э"
     // document.cookie =  "stel_ssid=11c26eca36f002cad6_17208947061775559847";
     // console.log(document.cookie);
