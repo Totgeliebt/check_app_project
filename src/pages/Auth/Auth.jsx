@@ -6,9 +6,10 @@ const Auth = () => {
   const handleTelegramResponse = (response) => {
     console.log("from teleg:", response);
     handleLogin(response);
-    console.log(document.cookie);
+    const cookies = document.cookie;
+    console.log(cookies);
   };
-
+  console.log(document.cookie);
   const handleLogin = async (response) => {
     return await PostService.login(response)
     // const res = await fetch("https://app-state.herokuapp.com/login", {

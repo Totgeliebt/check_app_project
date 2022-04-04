@@ -23,8 +23,9 @@ export default class PostService {
   }
 
   static async getAll() {
-    return await axios.get("https://app-state.herokuapp.com/v1/apps", {withCredentials: true});
-
+    return await axios.get("https://app-state.herokuapp.com/v1/apps", {
+      withCredentials: true,
+    });
   }
 
   static async getAppById(id) {
@@ -62,16 +63,12 @@ export default class PostService {
   }
 
   static async login(response) {
-    return await axios.post(
-      "https://app-state.herokuapp.com/login",
-       JSON.stringify(response),
-      {
-        withCredentials:true,
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-          Accept: "application/json",
-        },
-      }
-    );
+    return await axios.post("https://app-state.herokuapp.com/login", response, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        Accept: "application/json",
+      },
+    });
   }
 }
